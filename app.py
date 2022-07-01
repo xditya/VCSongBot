@@ -90,11 +90,8 @@ async def skip_current_song(chat_id):
                 await app.change_stream(
                     chat_id, AudioVideoPiped(playlink, HighQualityAudio(), hm)
                 )
-            pop_an_item(chat_id)
-            await bot.send_photo(chat_id, photo = thumb,
-                                 caption = f"▶️ <b>Now playing:</b> [{title}]({link}) | `{type}` \n\n⏳ <b>Duration:</b> {duration}"
-            return [title, link, type, duration, thumb]
-            await bot.message.delete
+          
+            
     else:
         return 0
 
