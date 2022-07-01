@@ -21,7 +21,7 @@
 
 <p align="left"><a href="https://replit.com/@AaravxD/PyroStringSession#main.py"><img src="https://img.shields.io/badge/Generate%20On%20Repl-blueviolet?style=for-the-badge&logo=appveyor" width="245" alt="Repl"></a></p>  
 
-<p align="left"><a href="https://t.me/YukkiStringBot"><img src="https://img.shields.io/badge/Generate%20On%20Repl-blackorange?style=for-the-badge&logo=appveyor" width="240" alt="Repl"></a></p>  
+<p align="left"><a href="https://t.me/YukkiStringBot"><img src="https://img.shields.io/badge/alternative%20On%20stringbot-blackorange?style=for-the-badge&logo=appveyor" width="240" alt="Repl"></a></p>  
 
 ## 🛠 Config Vars
 
