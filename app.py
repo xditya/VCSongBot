@@ -13,7 +13,6 @@ from pyrogram.raw.base import Update
 from pytgcalls.types import AudioPiped, AudioVideoPiped
 from pytgcalls.types import (
     HighQualityAudio,
-    HighQualityVideo,
     LowQualityVideo,
     MediumQualityVideo
 )
