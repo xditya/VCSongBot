@@ -1,6 +1,6 @@
-pyrogram==1.4.12
+pyrogram==1.4.16
 tgcrypto
-py-tgcalls==0.8.6
+py-tgcalls==0.9.1
 youtube_search
 pytube
 yt-dlp
@@ -8,3 +8,8 @@ youtube_dl
 python-dotenv
 ffmpeg-python
 ffmpeg
+youtube-search-python
+requests
+aiohttp
+asyncio
+aiofiles
