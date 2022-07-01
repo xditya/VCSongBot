@@ -183,39 +183,39 @@ async def callbacks(_, cq: CallbackQuery):
         try:
             await app.pause_stream(chat_id)
             await cq.answer("Paused streaming.")
-        return await cq.message.delete()
+        
         except:
             await cq.answer("Nothing is playing.")
-        return await cq.message.delete()
+      
       
     elif data == "resume":
         try:
             await app.resume_stream(chat_id)
             await cq.answer("Resumed streaming.")
-         return await cq.message.delete()
+     
         except:
             await cq.answer("Nothing is playing.")
-          return await cq.message.delete()
+          
 
     elif data == "stop":
         await app.leave_group_call(chat_id)
         clear_queue(chat_id)
         await cq.answer("Stopped streaming.") 
-          return await cq.message.delete()
+          
     elif data == "mute":
         try:
             await app.mute_stream(chat_id)
             await cq.answer("Muted streaming.")
-           return await cq.message.delete()
+           
         except:
             await cq.answer("Nothing is playing.")
-           return await cq.message.delete()
+           
             
     elif data == "unmute":
         try:
             await app.unmute_stream(chat_id)
             await cq.answer("Unmuted streaming.")
-           return await cq.message.delete()
+      
         except:
             await cq.answer("Nothing is playing.")
             
