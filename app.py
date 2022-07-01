@@ -309,8 +309,8 @@ async def video_play(_, message):
                 stream_type=StreamType().pulse_stream
             )
             add_to_queue(chat_id, yt.title, duration, link, playlink, doom, Q, thumb)
-            await message.reply_photo(thumb, caption=cap
-            await m.delete()
+           
+            
     except Exception as e:
         return await m.edit(str(e))
     
@@ -389,7 +389,6 @@ async def playlist(_, message):
     if chat_id in QUEUE:
         chat_queue = get_queue(chat_id)
         if len(chat_queue) == 1:
-            await message.delete()
             await message.reply_text(
                 f"▶️ <b>Now playing:</b> [{chat_queue[0][0]}]({chat_queue[0][2]}) | `{chat_queue[0][4]}`",
                 disable_web_page_preview=True,
