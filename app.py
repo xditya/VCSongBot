@@ -269,8 +269,6 @@ async def video_play(_, message):
             )
             add_to_queue(chat_id, yt.title, duration, link, playlink, doom, Q, thumb) 
     
-    
-    
 @bot.on_message(filters.command(["saudio", "svideo"]) & filters.group)
 @is_admin
 async def stream_func(_, message):
