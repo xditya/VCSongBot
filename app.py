@@ -38,6 +38,8 @@ OWNER_ID = int(os.environ["OWNER_ID"])
 
 LIVE_CHATS = []
 
+START_IMAGE = "https://telegra.ph/file/9ff042822b9997d2f925a.jpg"
+
 START_TEXT = """
 Hi <b>{}</b> 👋
 
@@ -204,6 +206,7 @@ async def callbacks(_, cq: CallbackQuery):
            
 @bot.on_message(filters.command("start") & filters.private)
 async def start_private(_, message):
+    await message.reply_photo(Photo = START_IMAGE)
     msg = START_TEXT.format(message.from_user.mention)
     await message.reply_text(text = msg,
                              reply_markup = START_BUTTONS)
@@ -226,8 +229,6 @@ async def video_play(_, message):
     chat_id = message.chat.id
     if chat_id in LIVE_CHATS:
         return await message.reply_text("❗️Please send <code>/stop</code> to end current live streaming before play songs or videos.")
-    
-    m = await message.reply_text("🔄 Processing...")
     if state == "play":
         damn = AudioPiped
         ded = yt_audio
@@ -455,7 +456,8 @@ async def restart(_, message):
     user_id = message.from_user.id
     if user_id != OWNER_ID:
         return
-    await message.reply_text("🛠 <i>Restarting Music Player...</i>")
+    await message.reply_text("<i>Restarting</i>")
+    await message.delete()
     os.system(f"kill -9 {os.getpid()} && python3 app.py")
             
 
