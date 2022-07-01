@@ -238,8 +238,6 @@ async def video_play(_, message):
         Q = "low"
     elif "mid" in query:
         Q = "mid"
-    elif "high" in query:
-        Q = "high"
     else:
         Q = "0"
     try:
@@ -259,9 +257,9 @@ async def video_play(_, message):
         except:
             ice, playlink = await ded(link)
             if ice == "0":
-                return await m.edit("❗️YTDL ERROR !!!")               
-    except Exception as e:
-        return await m.edit(str(e))
+                return await message.reply_text("❗️YTDL ERROR !!!")
+                       await message.delete()               
+    
     
     try:
         if chat_id in QUEUE:
@@ -276,8 +274,7 @@ async def video_play(_, message):
                 stream_type=StreamType().pulse_stream
             )
             add_to_queue(chat_id, yt.title, duration, link, playlink, doom, Q, thumb) 
-    except Exception as e:
-        return await m.edit(str(e))
+    
     
     
 @bot.on_message(filters.command(["saudio", "svideo"]) & filters.group)
@@ -297,7 +294,6 @@ async def stream_func(_, message):
     elif state == "svideo":
         damn = AudioVideoPiped
         emj = "🎬"
-    m = await message.reply_text("🔄 Processing...")
     try:
         if chat_id in QUEUE:
             return await m.edit("❗️Please send <code>/stop</code> to end voice chat before live streaming.")
@@ -306,7 +302,7 @@ async def stream_func(_, message):
                 chat_id,
                 damn(link)
             )
-            await m.edit(f"{emj} Started streaming: [Link]({link})", disable_web_page_preview=True)
+            
         else:    
             await app.join_group_call(
                 chat_id,
