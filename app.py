@@ -256,9 +256,6 @@ async def video_play(_, message):
             if ice == "0":
                 return await message.reply_text("❗️YTDL ERROR !!!")
                                       
-    
-    
-    try:
         if chat_id in QUEUE:
             position = add_to_queue(chat_id, yt.title, duration, link, playlink, doom, Q, thumb)
             caps = f"<b>queued at position {position}</b>"
