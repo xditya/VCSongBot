@@ -269,8 +269,9 @@ async def video_play(_, message):
     try:
         if chat_id in QUEUE:
             position = add_to_queue(chat_id, yt.title, duration, link, playlink, doom, Q, thumb)
-            caps = f"#️⃣ [{yt.title}]({link}) <b>queued at position {position}</b> \n\n⏳ <b>Duration:</b> {duration}"
-            await message.reply_photo(thumb, caption=caps)
+            caps = f"<b>queued at position {position}</b>"
+            await message.reply_text(caption=caps)
+            await message.delete()
         else:            
             await app.join_group_call(
                 chat_id,
