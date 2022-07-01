@@ -302,9 +302,7 @@ async def stream_func(_, message):
                 stream_type=StreamType().pulse_stream)
             await m.edit(f"{emj} Started streaming: [Link]({link})", disable_web_page_preview=True)
             LIVE_CHATS.append(chat_id)
-    except Exception as e:
-        return await m.edit(str(e))
-
+    
 
 @bot.on_message(filters.command("skip") & filters.group)
 @is_admin
