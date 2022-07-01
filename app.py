@@ -223,13 +223,13 @@ async def callbacks(_, cq: CallbackQuery):
         op = await skip_current_song(chat_id)
         if op == 0:
             await cq.answer("Nothing in the queue to skip.")
-           return await cq.message.delete()
+           
         elif op == 1:
             await cq.answer("Empty queue, stopped streaming.")
-           return await cq.message.delete()
+           
         else:
             await cq.answer("Skipped.")
-           return await cq.message.delete()
+           
             
 
 # @bot.on_message(filters.command("start") & filters.private)
