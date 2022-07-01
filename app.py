@@ -43,13 +43,14 @@ Hi <b>{}</b> 👋
 
 I can play music & stream videos in Telegram group voice chats. 
 
-Make your own bot using below source code.
+x 『𝙸𝚏 𝚢𝚘𝚞 𝚠𝚊𝚗𝚝 𝚝𝚘 𝚊𝚍𝚍 𝚝𝚑𝚒𝚜 𝚋𝚘𝚝 𝚝𝚘 𝚞𝚛 𝚜𝚞𝚙𝚎𝚛 𝙶𝚛𝚘𝚞𝚙
+    𝚌𝚘𝚗𝚝𝚊𝚌𝚝 [@kk_kovilakam](https://t.me/kk_kovilakam)』
 """
 
 START_BUTTONS = InlineKeyboardMarkup(
     [
         [
-            InlineKeyboardButton("📨 Support", url="https://t.me/kk_kovilakam"),
+            InlineKeyboardButton("🎶UpdateS🎶", url="https://t.me/stenzle_appealchat"),
         ]
     ]
 )
