@@ -78,9 +78,7 @@ async def skip_current_song(chat_id):
                     ),
                 )
             elif type == "Video":
-                if Q == "high":
-                    hm = HighQualityVideo()
-                elif Q == "mid":
+                if Q == "mid":
                     hm = MediumQualityVideo()
                 elif Q == "low":
                     hm = LowQualityVideo()
@@ -257,7 +255,7 @@ async def video_play(_, message):
             ice, playlink = await ded(link)
             if ice == "0":
                 return await message.reply_text("❗️YTDL ERROR !!!")
-                       await message.delete()               
+                                      
     
     
     try:
