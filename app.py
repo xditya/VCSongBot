@@ -89,13 +89,9 @@ async def skip_current_song(chat_id):
                     hm = MediumQualityVideo()
                 await app.change_stream(
                     chat_id, AudioVideoPiped(playlink, HighQualityAudio(), hm)
-                )
-          
-            
+                )  
     else:
         return 0
-
-
 async def skip_item(chat_id, lol):
     if chat_id in QUEUE:
         chat_queue = get_queue(chat_id)
@@ -109,21 +105,15 @@ async def skip_item(chat_id, lol):
             return 0
     else:
         return 0
-
-
 @app.on_stream_end()
 async def on_end_handler(_, update: Update):
     if isinstance(update, StreamAudioEnded):
         chat_id = update.chat_id
         await skip_current_song(chat_id)
-
-
 @app.on_closed_voice_chat()
 async def close_handler(client: PyTgCalls, chat_id: int):
     if chat_id in QUEUE:
         clear_queue(chat_id)
-        
-
 async def yt_video(link):
     proc = await asyncio.create_subprocess_exec(
         "yt-dlp",
@@ -139,8 +129,6 @@ async def yt_video(link):
         return 1, stdout.decode().split("\n")[0]
     else:
         return 0, stderr.decode()
-    
-
 async def yt_audio(link):
     proc = await asyncio.create_subprocess_exec(
         "yt-dlp",
@@ -156,8 +144,6 @@ async def yt_audio(link):
         return 1, stdout.decode().split("\n")[0]
     else:
         return 0, stderr.decode()
-
-
 @bot.on_callback_query()
 async def callbacks(_, cq: CallbackQuery):
     user_id = cq.from_user.id
@@ -183,60 +169,44 @@ async def callbacks(_, cq: CallbackQuery):
         try:
             await app.pause_stream(chat_id)
             await cq.answer("Paused streaming.")
-        
         except:
             await cq.answer("Nothing is playing.")
-      
-      
     elif data == "resume":
         try:
             await app.resume_stream(chat_id)
             await cq.answer("Resumed streaming.")
-     
         except:
-            await cq.answer("Nothing is playing.")
-          
-
+            await cq.answer("Nothing is playing")
     elif data == "stop":
         await app.leave_group_call(chat_id)
         clear_queue(chat_id)
-        await cq.answer("Stopped streaming.") 
-          
+        await cq.answer("Stopped streaming.")   
     elif data == "mute":
         try:
             await app.mute_stream(chat_id)
             await cq.answer("Muted streaming.")
-           
         except:
-            await cq.answer("Nothing is playing.")
-           
-            
+            await cq.answer("Nothing is playing.") 
     elif data == "unmute":
         try:
             await app.unmute_stream(chat_id)
             await cq.answer("Unmuted streaming.")
-      
         except:
             await cq.answer("Nothing is playing.")
-            
     elif data == "skip":
         op = await skip_current_song(chat_id)
         if op == 0:
             await cq.answer("Nothing in the queue to skip.")
-           
         elif op == 1:
             await cq.answer("Empty queue, stopped streaming.")
-           
         else:
             await cq.answer("Skipped.")
            
-            
-
-# @bot.on_message(filters.command("start") & filters.private)
-# async def start_private(_, message):
-  #  msg = START_TEXT.format(message.from_user.mention)
-  #  await message.reply_text(text = msg,
-  #                           reply_markup = START_BUTTONS)
+@bot.on_message(filters.command("start") & filters.private)
+async def start_private(_, message):
+    msg = START_TEXT.format(message.from_user.mention)
+    await message.reply_text(text = msg,
+                             reply_markup = START_BUTTONS)
     
 
 # @bot.on_message(filters.command("start") & filters.group)
@@ -258,7 +228,6 @@ async def video_play(_, message):
         return await message.reply_text("❗️Please send <code>/stop</code> to end current live streaming before play songs or videos.")
     
     m = await message.reply_text("🔄 Processing...")
-    await message.delete(m)
     if state == "play":
         damn = AudioPiped
         ded = yt_audio
@@ -299,18 +268,15 @@ async def video_play(_, message):
     try:
         if chat_id in QUEUE:
             position = add_to_queue(chat_id, yt.title, duration, link, playlink, doom, Q, thumb)
-           # caps = f"#️⃣ [{yt.title}]({link}) <b>queued at position {position}</b> \n\n⏳ <b>Duration:</b> {duration}"
-           # await message.reply_photo(thumb, caption=caps)
-           # await m.delete()
+            caps = f"#️⃣ [{yt.title}]({link}) <b>queued at position {position}</b> \n\n⏳ <b>Duration:</b> {duration}"
+            await message.reply_photo(thumb, caption=caps)
         else:            
             await app.join_group_call(
                 chat_id,
                 damn(playlink),
                 stream_type=StreamType().pulse_stream
             )
-            add_to_queue(chat_id, yt.title, duration, link, playlink, doom, Q, thumb)
-           
-            
+            add_to_queue(chat_id, yt.title, duration, link, playlink, doom, Q, thumb) 
     except Exception as e:
         return await m.edit(str(e))
     
