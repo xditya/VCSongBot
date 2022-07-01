@@ -3,6 +3,8 @@
 
 
 <p align="center"><a href="https://github.com/sakhaavvaavaj93/47MusicPlayerBot"><img src="https://telegra.ph/file/9ff042822b9997d2f925a.jpg" alt="Music Player"></p>
+
+`Bot Link : [Ȓɑძꚕꭵꮶꭺ_ꮴꮳ_𝛽𝙾𝚻](https://t.me/Radhika_Vc_bot)
   
 ## 👀 Features
 - Fast & Powerful player
