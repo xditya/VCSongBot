@@ -1,0 +1,10 @@
+pyrogram==1.4.12
+tgcrypto
+py-tgcalls==0.8.6
+youtube_search
+pytube
+yt-dlp
+youtube_dl
+python-dotenv
+ffmpeg-python
+ffmpeg

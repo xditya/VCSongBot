@@ -1,0 +1,35 @@
+{
+  "name": "✿🌹𒀱ꪳᎡᴀḐῊℹⱩꭺ𒀱ꪳ🌹✿",
+  "description": "Bot to play songs in Telegram group voice chats. Powered by PyTgCalls.",
+  "keywords": ["music", "voicechat", "telegram","Radhika"],
+  "logo": "https://telegra.ph/file/9ff042822b9997d2f925a.jpg",
+  "repository": "https://github.com/sakhaavvaavaj93/Radhikabot.git",
+  "stack": "container",
+  "env": {
+    "SESSION_NAME": {
+      "description": "Pyrogram session string",
+      "required": true,
+      "value":"AQBObjdy7RYqV2hZ_PJvhK8LwB_EzVltwNo5m7geAlQXxfCbax0QP3QBXEq-WJn_2AtXZVMy_Vku6BC5RofdW0JMadVaWVINtvIsekntXyb1U3koXUV6HKNur4JG7pE5g9vHBg4gawKpqKdXGSbmkcLL1lE6EqrJYBgZmtXHX4mexm4QG_Wf8w93M1KK8YYvxlMaDYJBhiwzXUcx-uREiJEcnneRLNptlswFSVgremUVC_apqZhhpsTaIB3dgIHQn3xBMl4XrHmV9N8KBkNcpfzbID2UAjZvEzLb6NQTzJlZ30JoKRsWbTu0rTrXu2t0a_aQUDyYjmJwi79Ye3Ak7dSmAAAAAUVs3hoA"
+    },
+    "BOT_TOKEN": {
+      "description": "A bot token from @BotFather",
+      "value":"5493693015:AAGTagRPrD1Xz8cggOj6F3GEJLcqKtvAU-o",
+      "required": true
+    },
+    "API_ID": {
+      "description": "API_ID from my.telegram.org/apps",
+      "value":"17403049",
+      "required": true
+    },
+    "API_HASH": {
+      "description": "API_HASH from my.telegram.org/apps",
+      "value":"89dc583d86e679b1229c77c323ab2ca1",
+      "required": true
+    },
+    "OWNER_ID": {
+      "value":"5367251407",
+      "description": "Your Telegram ID",
+      "required": true
+    }
+  }
+}
