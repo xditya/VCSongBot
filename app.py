@@ -223,6 +223,8 @@ async def video_play(_, message):
     chat_id = message.chat.id
     if chat_id in LIVE_CHATS:
         return await message.reply_text("❗️Please send <code>/stop</code> to end current live streaming before play songs or videos.")
+    m = await message.reply_text("🔄 Processing...")
+    await message.delete(m)
     if state == "play":
         damn = AudioPiped
         ded = yt_audio
@@ -268,41 +270,8 @@ async def video_play(_, message):
                 stream_type=StreamType().pulse_stream
             )
             add_to_queue(chat_id, yt.title, duration, link, playlink, doom, Q, thumb) 
-    
-@bot.on_message(filters.command(["saudio", "svideo"]) & filters.group)
-@is_admin
-async def stream_func(_, message):
-    await message.delete()
-    state = message.command[0].lower()
-    try:
-        link = message.text.split(None, 1)[1]
-    except:
-        return await message.reply_text(f"<b>Usage:</b> <code>/{state} [link]</code>")
-    chat_id = message.chat.id
-    
-    if state == "saudio":
-        damn = AudioPiped
-        emj = "🎵"
-    elif state == "svideo":
-        damn = AudioVideoPiped
-        emj = "🎬"
-    try:
-        if chat_id in QUEUE:
-            return await m.edit("❗️Please send <code>/stop</code> to end voice chat before live streaming.")
-        elif chat_id in LIVE_CHATS:
-            await app.change_stream(
-                chat_id,
-                damn(link)
-            )
-            
-        else:    
-            await app.join_group_call(
-                chat_id,
-                damn(link),
-                stream_type=StreamType().pulse_stream)
-            await m.edit(f"{emj} Started streaming: [Link]({link})", disable_web_page_preview=True)
-            LIVE_CHATS.append(chat_id)
-    
+    except Exception as e:
+        return await m.edit(str(e))
 
 @bot.on_message(filters.command("skip") & filters.group)
 @is_admin
