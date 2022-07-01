@@ -168,31 +168,30 @@ async def callbacks(_, cq: CallbackQuery):
     if data == "pause":
         try:
             await app.pause_stream(chat_id)
-            await cq.answer("Paused streaming.")
         except:
             await cq.answer("Nothing is playing.")
+            await cq.message.delete()
     elif data == "resume":
         try:
             await app.resume_stream(chat_id)
-            await cq.answer("Resumed streaming.")
         except:
             await cq.answer("Nothing is playing")
+            await cq.message.delete()
     elif data == "stop":
         await app.leave_group_call(chat_id)
         clear_queue(chat_id)
-        await cq.answer("Stopped streaming.")   
     elif data == "mute":
         try:
             await app.mute_stream(chat_id)
-            await cq.answer("Muted streaming.")
         except:
             await cq.answer("Nothing is playing.") 
+            await cq.message.delete()
     elif data == "unmute":
         try:
             await app.unmute_stream(chat_id)
-            await cq.answer("Unmuted streaming.")
         except:
             await cq.answer("Nothing is playing.")
+            await cq.message.delete()
     elif data == "skip":
         op = await skip_current_song(chat_id)
         if op == 0:
@@ -201,6 +200,7 @@ async def callbacks(_, cq: CallbackQuery):
             await cq.answer("Empty queue, stopped streaming.")
         else:
             await cq.answer("Skipped.")
+            await cq.message.delete()
            
 @bot.on_message(filters.command("start") & filters.private)
 async def start_private(_, message):
@@ -369,7 +369,8 @@ async def playlist(_, message):
             await message.reply_text(out, disable_web_page_preview=True)
     else:
         await message.reply_text("❗Nothing is playing.")
-    
+        await message.delete()
+        
 
 @bot.on_message(filters.command("stop","end","leave") & filters.group)
 @is_admin
@@ -379,7 +380,7 @@ async def end(_, message):
     if chat_id in LIVE_CHATS:
         await app.leave_group_call(chat_id)
         LIVE_CHATS.remove(chat_id)
-        return await message.reply_text("⏹ Stopped streaming.")
+        
         
     if chat_id in QUEUE:
         await app.leave_group_call(chat_id)
@@ -387,6 +388,7 @@ async def end(_, message):
         await message.reply_text("⏹ Stopped streaming.")
     else:
         await message.reply_text("❗Nothing is playing.")
+        await message.delete()
         
 
 @bot.on_message(filters.command("pause") & filters.group)
@@ -397,11 +399,11 @@ async def pause(_, message):
     if chat_id in QUEUE:
         try:
             await app.pause_stream(chat_id)
-            await message.reply_text("⏸ Paused streaming.")
         except:
             await message.reply_text("❗Nothing is playing.")
     else:
         await message.reply_text("❗Nothing is playing.")
+        await cq.message.delete()
         
         
 @bot.on_message(filters.command("resume") & filters.group)
@@ -412,11 +414,11 @@ async def resume(_, message):
     if chat_id in QUEUE:
         try:
             await app.resume_stream(chat_id)
-            await message.reply_text("⏸ Resumed streaming.")
         except:
             await message.reply_text("❗Nothing is playing.")
     else:
         await message.reply_text("❗Nothing is playing.")
+        await message.delete()
         
         
 @bot.on_message(filters.command("mute") & filters.group)
@@ -427,12 +429,11 @@ async def mute(_, message):
     if chat_id in QUEUE:
         try:
             await app.mute_stream(chat_id)
-            await message.reply_text("🔇 Muted streaming.")
         except:
             await message.reply_text("❗Nothing is playing.")
     else:
         await message.reply_text("❗Nothing is playing.")
-        
+        await message.delete()
         
 @bot.on_message(filters.command("unmute") & filters.group)
 @is_admin
@@ -442,11 +443,11 @@ async def unmute(_, message):
     if chat_id in QUEUE:
         try:
             await app.unmute_stream(chat_id)
-            await message.reply_text("🔊 Unmuted streaming.")
         except:
             await message.reply_text("❗Nothing is playing.")
     else:
         await message.reply_text("❗Nothing is playing.")
+        await message.delete()
         
         
 @bot.on_message(filters.command("restart","reload"))
